@@ -17,7 +17,7 @@ spec:
       metadata:
         labels:
           tekton.dev/pipeline: nationalparks-dotnet-pipeline
-        name: nationalparks-dotnet-deploy-$(uid)
+        name: nationalparks-net-deploy-$(uid)
       spec:
         params:
           - name: APP_NAME
