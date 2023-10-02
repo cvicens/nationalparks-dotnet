@@ -16,7 +16,7 @@ spec:
       kind: PipelineRun
       metadata:
         labels:
-          tekton.dev/pipeline: nationalparks-pipeline
+          tekton.dev/pipeline: nationalparks-dotnet-pipeline
         name: nationalparks-deploy-$(uid)
       spec:
         params:
@@ -27,7 +27,7 @@ spec:
           - name: GIT_REVISION
             value: $(tt.params.git-revision)
         pipelineRef:
-          name: nationalparks-pipeline
+          name: nationalparks-dotnet-pipeline
         workspaces:
         - name: workspace
           persistentVolumeClaim:
