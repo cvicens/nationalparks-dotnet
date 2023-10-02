@@ -2,7 +2,7 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
-  name: nationalparks
+  name: nationalparks-dotnet
 spec:
   params:
     - name: git-revision
@@ -17,7 +17,7 @@ spec:
       metadata:
         labels:
           tekton.dev/pipeline: nationalparks-dotnet-pipeline
-        name: nationalparks-deploy-$(uid)
+        name: nationalparks-dotnet-deploy-$(uid)
       spec:
         params:
           - name: APP_NAME
@@ -36,7 +36,7 @@ spec:
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
-  name: nationalparks
+  name: nationalparks-dotnet
 spec:
   params:
   - name: git-repo-url
@@ -49,14 +49,14 @@ spec:
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: EventListener
 metadata:
-  name: nationalparks
+  name: nationalparks-dotnet
 spec:
   serviceAccountName: pipeline
   triggers:
   - bindings:
-    - ref: nationalparks
+    - ref: nationalparks-dotnet
     template:
-      ref: nationalparks
+      ref: nationalparks-dotnet
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
@@ -64,12 +64,12 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: EventListener
     app.kubernetes.io/part-of: Triggers
-    eventlistener: nationalparks
-  name: el-nationalparks
+    eventlistener: nationalparks-dotnet
+  name: el-nationalparks-dotnet
 spec:
   port:
     targetPort: http-listener
   to:
     kind: Service
-    name: el-nationalparks
+    name: el-nationalparks-dotnet
     weight: 100
