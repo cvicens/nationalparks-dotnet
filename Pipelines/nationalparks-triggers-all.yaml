@@ -31,7 +31,7 @@ spec:
         workspaces:
         - name: workspace
           persistentVolumeClaim:
-            claimName: app-source-pvc
+            claimName: app-source-pvc-dotnet
 ---
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerBinding
