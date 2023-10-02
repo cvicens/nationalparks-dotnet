@@ -21,7 +21,7 @@ spec:
       spec:
         params:
           - name: APP_NAME
-            value: nationalparks
+            value: nationalparks-dotnet
           - name: GIT_REPO
             value: $(tt.params.git-repo-url)
           - name: GIT_REVISION
